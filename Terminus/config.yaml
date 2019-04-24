@@ -1,7 +1,7 @@
 hotkeys:
   shell: {}
   profile: {}
-ssh: {}
+  clear: []
 terminal:
   colorScheme:
     name: Solarized Dark
@@ -33,8 +33,9 @@ terminal:
   autoOpen: true
   bracketedPaste: true
   copyOnSelect: true
-  font: DejaVu Sans Mono for Powerline
+  font: Source Code Pro for Powerline
   scrollOnInput: false
+  shell: wsl-kali-linux
 appearance:
   theme: Compact
   vibrancy: true
