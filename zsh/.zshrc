@@ -15,7 +15,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(command-not-found encode64 extract ng node npm wd)
+plugins=(git command-not-found encode64 extract ng node npm wd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -23,7 +23,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Config powerlevel9k
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context root_indicator dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history public_ip time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status public_ip time)
 POWERLEVEL9K_MODE='awesome-fontconfig'
 
 # Disable silly colours for writable directories
