@@ -2,4 +2,4 @@
         email = jakob@pennington.io
         name = Jakob Pennington
 [core]
-        autocrlf = false
+        autocrlf = true
