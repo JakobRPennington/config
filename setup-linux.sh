@@ -7,7 +7,7 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 # Install packages
-apt install -y zsh
+apt-get install -y zsh
 
 # Change default shell to zsh
 chsh --shell /bin/zsh $(whoami)
