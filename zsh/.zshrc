@@ -34,3 +34,27 @@ zstyle ':completion:*' list-colors
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Set docker to use Windows daemon
+export DOCKER_HOST=tcp://localhost:2375
+
+# Aliases
+nmap-tcp-fast(){
+  nmap --disable-arp-ping -Pn -oA nmap-tcp-fast $1
+}
+
+nmap-tcp-full(){
+  nmap --disable-arp-ping -Pn -A -p- -sC -oA nmap-tcp-allports $1
+}
+
+nmap-udp-fast(){
+  nmap --disable-arp-ping -Pn -sU -oA nmap-udp-fast $1
+}
+
+nmap-udp-full(){
+  nmap --disable-arp-ping -Pn -sU -p- -A -oA nmap-udp-allports $1
+}
+
+theharvester(){
+  theharvester -b all -d $1
+}
