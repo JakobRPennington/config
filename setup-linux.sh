@@ -19,4 +19,4 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 # Change default shell to zsh
-chsh --shell /bin/zsh $(whoami)
+chsh --shell $(which zsh) $(whoami)
