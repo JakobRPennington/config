@@ -6,6 +6,9 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
+# Copy git config
+cp ./git/.gitconfig ~/.gitconfig
+
 # Install packages
 apt-get install -y zsh
 
