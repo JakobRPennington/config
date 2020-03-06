@@ -12,11 +12,12 @@ apt-get install -y zsh
 # Set up oh-my-zsh
 CHSH=yes RUNZSH=no KEEP_ZSHRC=yes sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
 
-# Install powerlevel9k theme
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+# Install powerlevel10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
 # Copy zsh config
 cp ./zsh/.zshrc ~/.zshrc
+cp ./zsh/.p10k.zsh ~/.p10k.zsh
 
 # Change default shell to zsh
 chsh --shell $(which zsh) $(whoami)
