@@ -25,6 +25,19 @@ export NVM_DIR="$HOME/.nvm"
 export DOCKER_HOST=tcp://localhost:2375
 
 # Aliases
+ls-alias(){
+  echo amass
+  echo nmap-tcp-fast
+  echo nmap-tcp-full
+  echo nmap-udp-fast
+  echo nmap-udp-full
+  echo theharvester
+}
+
+amass() {
+  amass -active -v -d $1 | tee amass-subdomains-$(date +'%Y')-$(date +'%m')-$(date +'%d').txt
+}
+
 nmap-tcp-fast(){
   nmap --disable-arp-ping -Pn -oA nmap-tcp-fast $1
 }
