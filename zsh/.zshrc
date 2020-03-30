@@ -26,36 +26,54 @@ export DOCKER_HOST=tcp://localhost:2375
 
 # Aliases
 ls-alias(){
-  echo amass
+  echo amass-domain
+  echo amass-list
+  echo dirsearch-report
   echo nmap-tcp-fast
   echo nmap-tcp-full
   echo nmap-udp-fast
   echo nmap-udp-full
-  echo theharvester
+  echo harvest
 }
 
-amass() {
-  amass -active -v -d $1 | tee amass-subdomains-$(date +'%Y')-$(date +'%m')-$(date +'%d').txt
+amass-single() {
+  # example: amass-single domain.com
+  amass enum -active -v -d $1 | tee amass-single-subdomains-$(date +'%Y')-$(date +'%m')-$(date +'%d').txt
+}
+
+amass-list() {
+  # usage: amass-list domains.txt
+  amass enum -active -v -df $1 | tee amass-list-subdomains-$(date +'%Y')-$(date +'%m')-$(date +'%d').txt
+}
+
+dirsearch-report() {
+  # usage: dirsearch-report -u https://domain.com -e html,php
+  python3 ~/toolkit/dirsearch/dirsearch.py -r --plain-text-report=dirsearch-$(date +'%Y')-$(date +'%m')-$(date +'%d').txt $@
+}
+
+harvest(){
+  # usage: harvest domain.com
+  theHarvester -b all -d $1
 }
 
 nmap-tcp-fast(){
+  # usage: nmap-tcp-fast host.domain.com
   nmap --disable-arp-ping -Pn -oA nmap-tcp-fast $1
 }
 
 nmap-tcp-full(){
+  # usage: nmap-tcp-full host.domain.com
   nmap --disable-arp-ping -Pn -A -p- -sC -oA nmap-tcp-allports $1
 }
 
 nmap-udp-fast(){
+  # usage: nmap-udp-fast host.domain.com
   nmap --disable-arp-ping -Pn -sU -oA nmap-udp-fast $1
 }
 
 nmap-udp-full(){
+  # usage: nmap-udp-full host.domain.com
   nmap --disable-arp-ping -Pn -sU -p- -A -oA nmap-udp-allports $1
-}
-
-theharvester(){
-  theharvester -b all -d $1
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
