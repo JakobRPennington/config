@@ -58,6 +58,12 @@ harvest(){
   theHarvester -b all -d $1
 }
 
+massdns-resolve(){
+  # usage: massdns subdomains.txt
+  massdns -r ~/toolkit/massdns/lists/resolvers.txt -t A -w masssdns-raw.txt -q -o S $1
+  cat massdns-raw.txt | grep -v CNAME | awk '{split($0,a," "); print a[3]}' | sort | uniq > massdns-resolved-ips.txt
+}
+
 nmap-tcp-fast(){
   # usage: nmap-tcp-fast host.domain.com
   nmap --disable-arp-ping -Pn -oA nmap-tcp-fast $1
