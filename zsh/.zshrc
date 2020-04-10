@@ -26,14 +26,16 @@ export DOCKER_HOST=tcp://localhost:2375
 
 # Aliases
 ls-alias(){
-  echo amass-domain
+  echo amass-single
   echo amass-list
   echo dirsearch-report
+  echo harvest
   echo nmap-tcp-fast
   echo nmap-tcp-full
   echo nmap-udp-fast
   echo nmap-udp-full
-  echo harvest
+  echo subfinder-single
+  echo subfinder-list
 }
 
 amass-single() {
@@ -74,6 +76,16 @@ nmap-udp-fast(){
 nmap-udp-full(){
   # usage: nmap-udp-full host.domain.com
   nmap --disable-arp-ping -Pn -sU -p- -A -oA nmap-udp-allports $1
+}
+
+subfinder-single() {
+  # usage subfinder-single domain.com
+  subfinder -d $1 | tee subfinder-single-$(date +'%Y')-$(date +'%m')-$(date +'%d').txt
+}
+
+subfinder-list() {
+  # usage subfinder-list domains.txt
+  subfinder -dL $1 | tee subfinder-list-$(date +'%Y')-$(date +'%m')-$(date +'%d').txt
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
