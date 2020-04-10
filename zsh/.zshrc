@@ -58,6 +58,16 @@ harvest(){
   theHarvester -b all -d $1
 }
 
+masscan-top() {
+  # usage: masscan-top 20 subdomains.txt
+  masscan --top-ports $1 -iL $2 | sort > masscan-top-$1-ports.txt
+}
+
+masscan-full() {
+  # usage: masscan-full subdomains.txt
+  masscan -p0-65535 -iL $1 | sort > masscan-allports.txt
+}
+
 massdns-resolve(){
   # usage: massdns subdomains.txt
   massdns -r ~/toolkit/massdns/lists/resolvers.txt -t A -w masssdns-raw.txt -q -o S $1
