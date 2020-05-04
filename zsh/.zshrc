@@ -30,12 +30,16 @@ ls-alias(){
   echo amass-list
   echo dirsearch-report
   echo harvest
+  echo masscan-top
+  echo masscan-full
+  echo massdns-resolve
   echo nmap-tcp-fast
   echo nmap-tcp-full
   echo nmap-udp-fast
   echo nmap-udp-full
   echo subfinder-single
   echo subfinder-list
+  echo urlscan
 }
 
 amass-single() {
@@ -70,7 +74,7 @@ masscan-full() {
 
 massdns-resolve(){
   # usage: massdns subdomains.txt
-  massdns -r ~/toolkit/massdns/lists/resolvers.txt -t A -w masssdns-raw.txt -q -o S $1
+  massdns -r ~/toolkit/massdns/lists/resolvers.txt -t A -w massdns-raw.txt -q -o S $1
   cat massdns-raw.txt | grep -v CNAME | awk '{split($0,a," "); print a[3]}' | sort | uniq > massdns-resolved-ips.txt
 }
 
@@ -102,6 +106,11 @@ subfinder-single() {
 subfinder-list() {
   # usage subfinder-list domains.txt
   subfinder -dL $1 | tee subfinder-list-$(date +'%Y')-$(date +'%m')-$(date +'%d').txt
+}
+
+urlscan() {
+  # usage urlscan host.domain.com
+  gron "https://urlscan.io/api/v1/search/?q=domain:$1"  | grep 'url' | gron --ungron
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
