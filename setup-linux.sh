@@ -6,9 +6,6 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-# Copy git config
-cp ./git/.gitconfig ~/.gitconfig
-
 # Install packages
 apt-get install -y zsh
 
@@ -18,7 +15,9 @@ CHSH=yes RUNZSH=no KEEP_ZSHRC=yes sh -c "$(wget -O- https://raw.githubuserconten
 # Install powerlevel10k theme
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
-# Copy zsh config
+# Copy config files
+cp ./git/.gitconfig ~/.gitconfig
+cp ./tmux/.tmux.conf ~/.tmux.conf
 cp ./zsh/.zshrc ~/.zshrc
 cp ./zsh/.p10k.zsh ~/.p10k.zsh
 
