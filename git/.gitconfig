@@ -1,5 +1,7 @@
 [user]
-        email = jakob@pennington.io
+        email = jakob.pennington@gmail.com
         name = Jakob Pennington
 [core]
         autocrlf = true
+[push]
+        autoSetupRemote = true
